@@ -6,5 +6,19 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          "@data": "src/data",
+          "@pages": "src/pages",
+          "@shared": "src/shared",
+        },
+        extensions: [
+          "js", "jsx", "ts", "tsx"
+        ],
+      }
+    }
+  ],
 }

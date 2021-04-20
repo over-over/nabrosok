@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@data", "src/data"],
+        ["@pages", "src/pages"],
+        ["@shared", "src/shared"]
+      ]
+    }
+  }
+}
