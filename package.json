@@ -14,12 +14,18 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.12.0",
     "gatsby": "^3.0.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-styled-components": "^4.3.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.2.3",
+    "styled-reset": "^4.3.4"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.9",
+    "babel-eslint": "^10.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",

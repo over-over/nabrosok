@@ -23,6 +23,24 @@ export const ArtistDetails: React.FC<Props> = ({ artist }) => {
       </p>
       <p>{artist.genre}</p>
       <p>{artist.biography}</p>
+      <div>{artist.works.map(item => item.name)}</div>
+      <div>
+        {artist.contacts?.email && (
+          <a href={artist.contacts.email}>{artist.contacts.email}</a>
+        )}
+        {artist.contacts?.phone && (
+          <a href={'tel:' + artist.contacts.phone}>{artist.contacts.phone}</a>
+        )}
+        {artist.contacts?.instagram && (
+          <a href={artist.contacts.instagram}>{artist.contacts.instagram}</a>
+        )}
+        {artist.contacts?.vk && (
+          <a href={artist.contacts.vk}>{artist.contacts.vk}</a>
+        )}
+        {artist.contacts?.telegram && (
+          <a href={artist.contacts.telegram}>{artist.contacts.telegram}</a>
+        )}
+      </div>
     </div>
   );
 };
