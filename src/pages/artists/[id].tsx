@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { declFormatters } from '@shared/utils';
+import { artistsData } from '@data/data';
 import type { TArtist } from '@data/types';
 
 type Props = {
   artist: TArtist;
 };
 
-export const ArtistDetails: React.FC<Props> = ({ artist }) => {
+export const ArtistDetails: React.FC<Props> = ({ artist = artistsData[0] }) => {
   return (
     <div>
       {artist.media?.map((item, index) => {
@@ -34,9 +35,7 @@ export const ArtistDetails: React.FC<Props> = ({ artist }) => {
         {artist.contacts?.instagram && (
           <a href={artist.contacts.instagram}>{artist.contacts.instagram}</a>
         )}
-        {artist.contacts?.vk && (
-          <a href={artist.contacts.vk}>{artist.contacts.vk}</a>
-        )}
+        {artist.contacts?.vk && <a href={artist.contacts.vk}>{artist.contacts.vk}</a>}
         {artist.contacts?.telegram && (
           <a href={artist.contacts.telegram}>{artist.contacts.telegram}</a>
         )}
@@ -44,3 +43,5 @@ export const ArtistDetails: React.FC<Props> = ({ artist }) => {
     </div>
   );
 };
+
+export default ArtistDetails;

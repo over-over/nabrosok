@@ -25,3 +25,5 @@ export const WorkDetails: React.FC<Props> = ({ work }) => {
     </div>
   );
 };
+
+export default WorkDetails;
