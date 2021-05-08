@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { TArtistWork } from '@data/types';
+import { worksData } from '@data/data';
+import type { TArtistWork } from '@data/types';
 
 type Props = {
   work: TArtistWork;
 };
 
-export const WorkDetails: React.FC<Props> = ({ work }) => {
+export const WorkDetails: React.FC<Props> = ({ work = worksData[0] }) => {
   return (
     <div>
       <div>

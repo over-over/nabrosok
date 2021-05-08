@@ -9,3 +9,5 @@ export const ArtistsPage: React.FC<Props> = () => {
     </div>
   )
 }
+
+export default ArtistsPage;
