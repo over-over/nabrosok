@@ -15,6 +15,7 @@ module.exports = {
           "@data": "src/data",
           "@pages": "src/pages",
           "@shared": "src/shared",
+          "@ui": "src/ui",
         },
         extensions: [
           "js", "jsx", "ts", "tsx"

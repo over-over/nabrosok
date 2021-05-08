@@ -27,7 +27,8 @@
     "paths": {
         "@data/*": ["data/*"],
         "@pages/*": ["pages/*"],
-        "@shared/*": ["shared/*"]
+        "@shared/*": ["shared/*"],
+        "@ui/*": ["ui/*"]
       }
   },
   "include": [
