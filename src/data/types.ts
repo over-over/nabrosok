@@ -17,10 +17,10 @@ export type TMedia = {
 export type TArtistWork = {
   id: number;
   artistId: number;
-  genre: string;
-  media: TMedia[];
+  genre?: string;
+  imageUrl: string;
   name?: string;
-  date?: string;
+  year?: string;
   description?: string;
 };
 

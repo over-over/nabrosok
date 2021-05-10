@@ -22,6 +22,15 @@ module.exports = {
           "js", "jsx", "ts", "tsx"
         ],
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Roboto\:300,400,500`
+        ],
+        display: 'swap'
+      }
     }
   ],
 }

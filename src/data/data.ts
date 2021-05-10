@@ -13,19 +13,10 @@ export const artistsData: TArtist[] = [
         id: 0,
         artistId: 0,
         name: 'Солнечный закат',
-        date: '2015-07-20',
+        year: '2015',
         description: 'Солнечный закат на фоне деревьев',
         genre: 'Живопись',
-        media: [
-          {
-            url: 'https://art-stock.ru/image/cache/catalog/Flowers/MF-141-5-1000x660.jpg',
-            type: 'image',
-          },
-          {
-            url: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
-            type: 'image',
-          },
-        ],
+        imageUrl: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
       },
     ],
     contacts: {
@@ -40,36 +31,18 @@ export const worksData: TArtistWork[] = [
     id: 0,
     artistId: 0,
     name: 'Солнечный закат',
-    date: '2015-07-20',
+    year: '2015',
     description: 'Солнечный закат на фоне деревьев',
     genre: 'Живопись',
-    media: [
-      {
-        url: 'https://art-stock.ru/image/cache/catalog/Flowers/MF-141-5-1000x660.jpg',
-        type: 'image',
-      },
-      {
-        url: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
-        type: 'image',
-      },
-    ],
+    imageUrl: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
   },
   {
     id: 1,
     artistId: 2,
     name: 'Солнечный закат',
-    date: '2015-07-20',
+    year: '2019',
     description: 'Солнечный закат на фоне деревьев',
     genre: 'Живопись',
-    media: [
-      {
-        url: 'https://art-stock.ru/image/cache/catalog/Flowers/MF-141-5-1000x660.jpg',
-        type: 'image',
-      },
-      {
-        url: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
-        type: 'image',
-      },
-    ],
+    imageUrl: 'http://ae01.alicdn.com/kf/H633f6a54f8624ff2a5c6a8f2388fbbffU/-.jpg',
   },
 ];
