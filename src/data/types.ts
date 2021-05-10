@@ -4,9 +4,9 @@ export type TArtist = {
   age: number;
   genre?: string;
   biography?: string;
-  works: TArtistWork[];
-  media?: TMedia[];
-  contacts?: TContacts;
+  email?: string;
+  instagram?: string;
+  vk?: string;
 };
 
 export type TMedia = {
@@ -22,12 +22,4 @@ export type TArtistWork = {
   name?: string;
   year?: string;
   description?: string;
-};
-
-export type TContacts = {
-  phone?: string;
-  email?: string;
-  instagram?: string;
-  telegram?: string;
-  vk?: string;
 };

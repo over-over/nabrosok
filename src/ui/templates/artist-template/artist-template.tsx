@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Container, PageWrapper, Typography } from '@ui/atoms';
+import { declFormatters } from '@shared/utils';
 
 const ContentWrapper = styled.div`
   min-height: ${({ theme }) => `calc(100% - ${theme.spacing(4)}px);`};
@@ -24,55 +25,58 @@ const PhotoImage = styled.img`
   object-fit: cover;
 `;
 const NameText = styled(Typography)`
+  padding: 0 ${({ theme }) => theme.spacing(1)}px;
   background-color: ${({ theme }) => theme.palette.common.black};
   color: ${({ theme }) => theme.palette.common.white};
   word-break: break-word;
 `;
 
 type Props = {
-  imageUrl: string;
-  artistId: number;
-  name?: string;
-  description?: string;
+  name: string;
+  age?: number;
   genre?: string;
-  year?: string;
+  biography?: string;
+  email?: string;
+  vk?: string;
+  instagram?: string;
 };
 
-export const WorkTemplate: React.FC<Props> = ({
-  imageUrl,
-  artistId,
-  name = 'Без названия',
-  description,
+export const ArtistTemplate: React.FC<Props> = ({
+  name,
+  age,
   genre,
-  year,
+  biography,
+  email,
+  vk,
+  instagram,
 }) => {
   return (
     <PageWrapper>
       <Container>
         <ContentWrapper>
-          {imageUrl && (
-            <PhotoWrapper>
-              <PhotoImage src={imageUrl} alt={name} />
-            </PhotoWrapper>
-          )}
-          <NameText variant="h2" mb={3}>
+          <PhotoWrapper>
+            <PhotoImage
+              src="https://cdn1.flamp.ru/6d7599452548820411ed077c7d097c42.jpg"
+              alt={name}
+            />
+          </PhotoWrapper>
+          <NameText variant="h3" mb={2}>
             {name}
           </NameText>
-          {genre && (
-            <Typography variant="caption" mb={2}>
-              Жанр: {genre}
+          {age && (
+            <Typography variant="body2" mt={2} mb={1}>
+              {age} {declFormatters.age(age)}
             </Typography>
           )}
-          {description && (
-            <Typography variant="body2" mb={1}>
-              {description}
-            </Typography>
-          )}
-          {year && (
-            <Typography variant="caption" mb={2}>
-              {year}г.
-            </Typography>
-          )}
+          <Typography variant="caption" mb={2}>
+            Жанр: {genre}
+          </Typography>
+          {biography && <Typography variant="body1">{biography}</Typography>}
+          <div>
+            {email && <a href={email}>{email}</a>}
+            {instagram && <a href={instagram}>{instagram}</a>}
+            {vk && <a href={vk}>{vk}</a>}
+          </div>
         </ContentWrapper>
       </Container>
     </PageWrapper>

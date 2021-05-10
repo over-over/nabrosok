@@ -1,9 +1,13 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import styled, { useTheme, css } from 'styled-components';
 
 import { SPACING_SIZE } from '@ui/theme/helpers';
 
 import { TTextVariant } from './types';
+
+const StyledText = styled.p<{ styles?: React.CSSProperties }>`
+  ${({ styles }) => styles && css({ ...styles })}
+`;
 
 const variantMap: Record<TTextVariant, string> = {
   h1: 'h1',
@@ -79,13 +83,11 @@ const getMargins = (margins: TTextMargin) => {
 type Props = {
   variant?: TTextVariant;
   color?: string;
-  style?: React.CSSProperties;
 } & TTextMargin;
 
 export const Typography: React.FC<Props> = ({
   variant = 'body2',
   color,
-  style,
   mt,
   mb,
   ml,
@@ -97,15 +99,16 @@ export const Typography: React.FC<Props> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const TextTag = variantMap[variant] as keyof JSX.IntrinsicElements;
+  const textTag = variantMap[variant] as keyof JSX.IntrinsicElements;
   const textStyles = theme.typography[variant] as React.CSSProperties;
   const textColor = color ?? textStyles.color;
 
   const margins = getMargins({ mt, mb, ml, mr, mx, my, m });
+  const styles = { ...textStyles, color: textColor, ...margins };
 
   return (
-    <TextTag style={{ ...textStyles, color: textColor, ...margins, ...style }} {...props}>
+    <StyledText styles={styles} as={textTag} {...props}>
       {children}
-    </TextTag>
+    </StyledText>
   );
 };

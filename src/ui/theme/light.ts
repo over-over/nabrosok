@@ -20,6 +20,10 @@ export const light = {
       main: '#f50057',
       light: '#f73378',
     },
+    background: {
+      default: '#FFFFFF',
+      dark: '#CECECE',
+    },
     common: {
       white: '#FFFFFF',
       black: '#000000',
@@ -28,7 +32,7 @@ export const light = {
   typography: {
     h1: {
       fontFamily: 'Roboto, sans-serif',
-      fontWeight: 300,
+      fontWeight: 500,
       fontSize: '96px',
       lineHeight: '112px',
       color: 'rgba(0,0,0,0.87)',
@@ -36,7 +40,7 @@ export const light = {
     },
     h2: {
       fontFamily: 'Roboto, sans-serif',
-      fontWeight: 300,
+      fontWeight: 500,
       fontSize: '60px',
       lineHeight: '70px',
       color: 'rgba(0,0,0,0.87)',
