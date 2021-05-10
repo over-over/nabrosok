@@ -1,22 +1,32 @@
 import React from 'react';
 
-import { worksData } from '@data/data';
+import worksJSON from '@data/works.json';
 import type { TArtistWork } from '@data/types';
 import { WorkTemplate } from '@ui/templates';
 
 type Props = {
-  work: TArtistWork;
+  location: any;
 };
 
-export const WorkDetails: React.FC<Props> = ({ work = worksData[0] }) => {
+export const WorkDetails: React.FC<Props> = ({ location }) => {
+  const splitPath = location?.pathname?.split('/');
+  const id = Number(splitPath[splitPath.length - 1]);
+  //@ts-ignore
+  const works: Record<string, TArtistWork> = worksJSON;
+  const data = works?.[id];
+
+  if (!id || !data) {
+    return <p>Ooops :(</p>;
+  }
+
   return (
     <WorkTemplate
-      artistId={work.artistId}
-      year={work.year}
-      imageUrl={work.imageUrl}
-      description={work.description}
-      genre={work.genre}
-      name={work.name}
+      artistId={data.artistId}
+      year={data.year}
+      imageUrl={data.imageUrl}
+      description={data.description}
+      genre={data.genre}
+      name={data.name}
     />
   );
 };

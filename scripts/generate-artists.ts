@@ -1,53 +1,77 @@
-import artists from './input/artists.json';
+const artistFs = require('fs');
+const artistFetch = require('node-fetch');
 
-interface TArtistData {
+const GSArtistLink =
+  'https://gsx2json.com/api?id=1bCDWSG2fBDbZURr2u_n6psaQkGmKdXz3ZytGYixTI9Y&sheet=1';
+
+type TGSArtistsResponse = {
+  columns: {
+    artistid: number[];
+    name: string[];
+    age: (number | 0)[];
+    genre: (string | 0)[];
+    email: (string | 0)[];
+    vk: (string | 0)[];
+    instagram: (string | 0)[];
+    link: (string | 0)[];
+    media: (string | 0)[];
+    biogrpahy: (string | 0)[];
+  };
+  rows: {
+    artistid: number;
+    name: string;
+    age: number | 0;
+    genre: string | 0;
+    email: string | 0;
+    vk: string | 0;
+    instagram: string | 0;
+    link: string | 0;
+    media: string | 0;
+    biography: string | 0;
+  }[];
+};
+
+type TArtist = {
   id: number;
-  name?: string;
-  age?: number;
+  name: string;
+  age: number;
   genre?: string;
   biography?: string;
   email?: string;
-  vk?: string;
   instagram?: string;
-  media?: string;
-  link: string;
-}
-
-type TTableColumns =
-  | 'Имя (Ф.И. или псевдоним)'
-  | 'Возраст'
-  | 'Жанр'
-  | 'О себе'
-  | 'Медиа (Ссылка на папку гугл диска со своими фото или видео)'
-  | 'Email'
-  | 'VK (полная ссылка)'
-  | 'Instagram (ник)'
-  | 'Автогенерируемая ссылка на художника (НЕ ЗАПОЛНЯТЬ)'
-  | 'Автогенерируемый ID художника (НЕ ЗАПОЛНЯТЬ)';
-
-type TArtistsFields = Record<TTableColumns, keyof TArtistData>;
-
-const mapKeys: TArtistsFields = {
-  'Имя (Ф.И. или псевдоним)': 'name',
-  Возраст: 'age',
-  Жанр: 'genre',
-  'О себе': 'biography',
-  'Медиа (Ссылка на папку гугл диска со своими фото или видео)': 'media',
-  Email: 'email',
-  'VK (полная ссылка)': 'vk',
-  'Instagram (ник)': 'instagram',
-  'Автогенерируемая ссылка на художника (НЕ ЗАПОЛНЯТЬ)': 'link',
-  'Автогенерируемый ID художника (НЕ ЗАПОЛНЯТЬ)': 'id',
+  vk?: string;
 };
 
+type TArtistData = Record<number, TArtist>;
 
-// const result = artists.map(item => {
-//   const keys = Object.keys(item) as TTableColumns[];
-//   // const artist = keys.reduce((key, acc: TArtistData[]) => {
-//   //   // acc[mapKeys[key]] =
-//   //   // return acc
-//   //   const newKey = mapKeys[key];
-//   //   acc[newKey] = item[key];
-//   //   return acc;
-//   // }, {} as TArtistData);
-// });
+const requestArtistData = async () => {
+  try {
+    const sheetJSON: TGSArtistsResponse = await (await artistFetch(GSArtistLink)).json();
+    const mappedData: TArtistData = sheetJSON.rows.reduce((acc, item) => {
+      const instagram =
+        item.instagram === 0
+          ? undefined
+          : 'https://www.instagram.com/' + item.instagram.slice(1);
+      const result: TArtist = {
+        id: item.artistid,
+        name: item.name,
+        genre: item.genre === 0 ? undefined : item.genre,
+        biography: item.biography === 0 ? undefined : item.biography,
+        age: item.age === 0 ? undefined : item.age,
+        email: item.email === 0 ? undefined : item.email,
+        vk: item.vk === 0 ? undefined : item.vk,
+        instagram,
+      };
+      return { ...acc, [item.artistid]: result };
+    }, {});
+    artistFs.writeFileSync(
+      __dirname + '/../src/data/artists.json',
+      JSON.stringify(mappedData),
+    );
+    console.log('DONE!: Saved artists to @src/data/artists.json');
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+requestArtistData();

@@ -1,54 +1,32 @@
 import React from 'react';
 
-import { declFormatters } from '@shared/utils';
-import { artistsData } from '@data/data';
+import artistsJSON from '@data/artists.json';
 import type { TArtist } from '@data/types';
-import styled from 'styled-components';
 import { ArtistTemplate } from '@ui/templates';
 
-const PageWrapper = styled.div`
-  height: 100vh;
-  background-color: ${({ theme }) => theme.palette.primary.main};
-`;
-
-const PageContentWrapper = styled.div`
-  height: 100%;
-  max-width: 700px;
-  margin: auto;
-`;
-
-const ContentWrapper = styled.div`
-  background-color: ${({ theme }) => theme.palette.common.white};
-  padding: ${({ theme }) => theme.spacing(2)}px;
-`;
-const PhotoWrapper = styled.div`
-  height: 320px;
-  margin-bottom: ${({ theme }) => theme.spacing(2)}px;
-`;
-const PhotoImage = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-`;
-const NameText = styled.h1`
-  display: inline;
-  font-size: 32px;
-  font-weight: bold;
-  background-color: ${({ theme }) => theme.palette.common.black};
-  color: ${({ theme }) => theme.palette.common.white};
-`;
-
 type Props = {
-  artist: TArtist;
+  location: any;
 };
 
-export const ArtistDetails: React.FC<Props> = ({ artist = artistsData[0] }) => {
+export const ArtistDetails: React.FC<Props> = ({ location }) => {
+  const splitPath = location?.pathname?.split('/');
+  const id = Number(splitPath[splitPath.length - 1]);
+  //@ts-ignore
+  const works: Record<string, TArtist> = artistsJSON;
+  const data = works?.[id];
+
+  if (!id || !data) {
+    return <p>Ooops :(</p>;
+  }
   return (
     <ArtistTemplate
-      name={artist.name}
-      age={artist.age}
-      biography={artist.biography}
-      genre={artist.genre}
+      name={data.name}
+      age={data.age}
+      biography={data.biography}
+      genre={data.genre}
+      email={data.email}
+      vk={data.vk}
+      instagram={data.instagram}
     />
   );
 };
