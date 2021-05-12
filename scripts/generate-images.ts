@@ -43,7 +43,7 @@ const download = (url: string, path: string, callback: () => void) => {
   });
 };
 
-let globalIndex = 149;
+let globalIndex = 148;
 let images: TImageData[] = [];
 
 const callb = () => {
