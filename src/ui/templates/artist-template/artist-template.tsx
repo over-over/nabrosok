@@ -5,9 +5,8 @@ import { Container, PageWrapper, Typography } from '@ui/atoms';
 import { declFormatters } from '@shared/utils';
 
 const ContentWrapper = styled.div`
-  min-height: ${({ theme }) => `calc(100% - ${theme.spacing(4)}px);`};
+  flex-grow: 1;
   background-color: ${({ theme }) => theme.palette.background.default};
-  margin: ${({ theme }) => theme.spacing(2)}px 0;
   padding: ${({ theme }) => theme.spacing(2)}px;
 `;
 const PhotoWrapper = styled.div`

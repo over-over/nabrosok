@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
+  min-height: 100%;
   max-width: 700px;
+  padding: ${({ theme }) => theme.spacing(2)}px 0 ${({ theme }) => theme.spacing(4)}px;
+  display: flex;
+  flex-direction: column;
   margin: auto;
-  overflow-y: auto;
 `;
