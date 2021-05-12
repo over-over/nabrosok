@@ -19,7 +19,7 @@ export const WorkDetails: React.FC<Props> = ({ location }) => {
     return <p>Ooops :(</p>;
   }
 
-  const image = `../../../work-${data.id}.jpg`;
+  const image = `/nabrosok/work-${data.id}.jpg`;
 
   return (
     <WorkTemplate

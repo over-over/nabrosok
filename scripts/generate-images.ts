@@ -43,7 +43,7 @@ const download = (url: string, path: string, callback: () => void) => {
   });
 };
 
-let globalIndex = 34;
+let globalIndex = 106;
 let images: TImageData[] = [];
 
 const callb = () => {
@@ -57,7 +57,7 @@ const callb = () => {
 
 const requestImageData = async () => {
   try {
-    const sheetJSON: TGSWorksResponse = await (await imagesFetch(GSImagelink)).json();
+    const sheetJSON: TGSImagesResponse = await (await imagesFetch(GSImagelink)).json();
     const mappedData: TImageData[] = sheetJSON.rows.reduce((acc, item) => {
       if (item.imageurl) {
         const result: TImageData = {
