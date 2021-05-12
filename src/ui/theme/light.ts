@@ -24,6 +24,10 @@ export const light = {
       default: '#FFFFFF',
       dark: '#CECECE',
     },
+    border: {
+      default: '#3E3E3E',
+      dark: '#000000',
+    },
     common: {
       white: '#FFFFFF',
       black: '#000000',

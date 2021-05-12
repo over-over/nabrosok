@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Container, PageWrapper, Typography } from '@ui/atoms';
+import { ArtistCard } from '@ui/molecules';
 
 const ContentWrapper = styled.div`
   flex-grow: 1;
@@ -9,8 +10,8 @@ const ContentWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing(2)}px;
 `;
 const PhotoWrapper = styled.div`
-  height: 480px;
-  max-width: 480px;
+  height: 420px;
+  max-width: 420px;
   margin: 0 auto ${({ theme }) => theme.spacing(2)}px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
@@ -23,6 +24,7 @@ const PhotoImage = styled.img`
   object-fit: cover;
 `;
 const NameText = styled(Typography)`
+  padding: 0 ${({ theme }) => theme.spacing(1)}px;
   background-color: ${({ theme }) => theme.palette.common.black};
   color: ${({ theme }) => theme.palette.common.white};
   word-break: break-word;
@@ -30,16 +32,20 @@ const NameText = styled(Typography)`
 
 type Props = {
   imageUrl: string;
-  artistId: number;
   name?: string;
   description?: string;
   genre?: string;
   year?: string;
+  artistData?: {
+    id: number;
+    name: string;
+    biography?: string;
+  };
 };
 
 export const WorkTemplate: React.FC<Props> = ({
   imageUrl,
-  artistId,
+  artistData,
   name = 'Без названия',
   description,
   genre,
@@ -71,6 +77,16 @@ export const WorkTemplate: React.FC<Props> = ({
             <Typography variant="caption" mb={2}>
               {year}г.
             </Typography>
+          )}
+          {artistData && (
+            <>
+              <div style={{ height: 80 }} />
+              <ArtistCard
+                id={artistData.id}
+                name={artistData.name}
+                biography={artistData.biography}
+              />
+            </>
           )}
         </ContentWrapper>
       </Container>

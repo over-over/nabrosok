@@ -5,8 +5,16 @@ import { SPACING_SIZE } from '@ui/theme/helpers';
 
 import { TTextVariant } from './types';
 
-const StyledText = styled.p<{ styles?: React.CSSProperties }>`
+const StyledText = styled.p<{ styles?: React.CSSProperties; $numberOfLines?: number }>`
   ${({ styles }) => styles && css({ ...styles })}
+  ${({ $numberOfLines }) =>
+    $numberOfLines &&
+    `
+    display: -webkit-box;
+    -webkit-line-clamp: ${$numberOfLines};
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  `}
 `;
 
 const variantMap: Record<TTextVariant, string> = {
@@ -83,11 +91,13 @@ const getMargins = (margins: TTextMargin) => {
 type Props = {
   variant?: TTextVariant;
   color?: string;
+  numberOfLines?: number;
 } & TTextMargin;
 
 export const Typography: React.FC<Props> = ({
   variant = 'body2',
   color,
+  numberOfLines,
   mt,
   mb,
   ml,
@@ -107,7 +117,7 @@ export const Typography: React.FC<Props> = ({
   const styles = { ...textStyles, color: textColor, ...margins };
 
   return (
-    <StyledText styles={styles} as={textTag} {...props}>
+    <StyledText styles={styles} as={textTag} $numberOfLines={numberOfLines} {...props}>
       {children}
     </StyledText>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import worksJSON from '@data/works.json';
-import type { TArtistWork } from '@data/types';
+import artistsJSON from '@data/artists.json';
+import type { TArtistWork, TArtist } from '@data/types';
 import { WorkTemplate } from '@ui/templates';
 
 type Props = {
@@ -18,12 +19,20 @@ export const WorkDetails: React.FC<Props> = ({ location }) => {
   if (!id || !data) {
     return <p>Ooops :(</p>;
   }
-
+  //@ts-ignore
+  const artist: TArtist | undefined = artistsJSON[data.artistId];
+  const artistData = artist
+    ? {
+        id: artist.id,
+        name: artist.name,
+        biography: artist.biography,
+      }
+    : undefined;
   const image = `/nabrosok/work-${data.id}.jpg`;
 
   return (
     <WorkTemplate
-      artistId={data.artistId}
+      artistData={artistData}
       year={data.year}
       imageUrl={image}
       description={data.description}
