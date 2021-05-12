@@ -19,11 +19,13 @@ export const WorkDetails: React.FC<Props> = ({ location }) => {
     return <p>Ooops :(</p>;
   }
 
+  const image = `../../../work-${data.id}.jpg`;
+
   return (
     <WorkTemplate
       artistId={data.artistId}
       year={data.year}
-      imageUrl={data.imageUrl}
+      imageUrl={image}
       description={data.description}
       genre={data.genre}
       name={data.name}
