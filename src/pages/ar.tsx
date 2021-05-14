@@ -47,9 +47,12 @@ export const Ar: React.FC<Props> = ({}) => {
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener('load', handleLoad);
-    return () => window.removeEventListener('load', handleLoad);
-  }, []);
+    // window.addEventListener('load', handleLoad);
+    // return () => window.removeEventListener('load', handleLoad);
+    if (document.readyState === 'complete') {
+      handleLoad();
+    }
+  }, [document.readyState]);
 
   return (
     <>
