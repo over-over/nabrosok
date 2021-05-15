@@ -16,7 +16,7 @@ export const ArtistDetails: React.FC<Props> = ({ location }) => {
   const data = works?.[id];
 
   // dumb
-  if (id < 2 || id > 60) {
+  if (Number.isNaN(id) || id < 2 || id > 60) {
     return <NoDataTemplate text="Возможно нет данных об авторе" />;
   }
 

@@ -33,7 +33,7 @@ const NameText = styled(Typography)`
 `;
 const LinksWrapper = styled.div`
   margin-top: auto;
-  padding-top: ${({ theme }) => theme.spacing(3)}px;
+  padding-top: ${({ theme }) => theme.spacing(6)}px;
 `;
 const Link = styled.a`
   display: flex;
@@ -81,27 +81,34 @@ export const ArtistTemplate: React.FC<Props> = ({
               {age} {declFormatters.age(age)}
             </Typography>
           )}
-          <Typography variant="caption" mb={2}>
-            Жанр: {genre}
-          </Typography>
+          {genre && (
+            <Typography variant="caption" mb={2}>
+              Жанр: {genre}
+            </Typography>
+          )}
           {biography && <Typography variant="body1">{biography}</Typography>}
-          <LinksWrapper>
-            {email && (
-              <Link href={'mailto:' + email}>
-                <NameText variant="subtitle2">{email}</NameText>
-              </Link>
-            )}
-            {instagram && (
-              <Link href={instagram}>
-                <NameText variant="subtitle2">{instagram}</NameText>
-              </Link>
-            )}
-            {vk && (
-              <Link href={vk}>
-                <NameText variant="subtitle2">{vk}</NameText>
-              </Link>
-            )}
-          </LinksWrapper>
+          {email || instagram || vk ? (
+            <LinksWrapper>
+              <Typography variant="h5" mb={2}>
+                Контакты:
+              </Typography>
+              {email && (
+                <Link href={'mailto:' + email}>
+                  <NameText variant="subtitle2">{email}</NameText>
+                </Link>
+              )}
+              {instagram && (
+                <Link href={instagram}>
+                  <NameText variant="subtitle2">{instagram}</NameText>
+                </Link>
+              )}
+              {vk && (
+                <Link href={vk}>
+                  <NameText variant="subtitle2">{vk}</NameText>
+                </Link>
+              )}
+            </LinksWrapper>
+          ) : null}
         </ContentWrapper>
       </Container>
     </PageWrapper>

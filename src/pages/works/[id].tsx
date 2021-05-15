@@ -17,7 +17,7 @@ export const WorkDetails: React.FC<Props> = ({ location }) => {
   const data = works?.[id];
 
   // dumb
-  if (id < 2 || id > 200) {
+  if (Number.isNaN(id) || id < 2 || id > 200) {
     return <NoDataTemplate text="Возможно данной работы нет" />;
   }
 
