@@ -41,7 +41,7 @@ export const ArtistCard: React.FC<Props> = ({ id, name, biography }) => {
           {biography}
         </Typography>
       )}
-      <LinkText href={`/artists/${id}`}>
+      <LinkText href={`/nabrosok/artists/${id}`}>
         <Typography variant="subtitle1">Ещё об авторе 👀</Typography>
       </LinkText>
     </Wrapper>

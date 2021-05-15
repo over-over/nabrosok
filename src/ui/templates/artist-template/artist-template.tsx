@@ -53,13 +53,13 @@ export const ArtistTemplate: React.FC<Props> = ({
     <PageWrapper>
       <Container>
         <ContentWrapper>
-          <PhotoWrapper>
+          {/* <PhotoWrapper>
             Тут будет видео-карточка или ничего :)
-            {/* <PhotoImage
+            <PhotoImage
               src="https://cdn1.flamp.ru/6d7599452548820411ed077c7d097c42.jpg"
               alt={name}
-            /> */}
-          </PhotoWrapper>
+            />
+          </PhotoWrapper> */}
           <NameText variant="h3" mb={2}>
             {name}
           </NameText>
