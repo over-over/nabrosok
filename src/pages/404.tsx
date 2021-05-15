@@ -1,13 +1,10 @@
-import React from "react"
+import React from 'react';
+import { NoDataTemplate } from '@ui/templates';
 
-type Props = {}
+type Props = {};
 
 const NotFoundPage: React.FC<Props> = ({}) => {
-  return (
-    <div>
-      <h1>Ничего не найдено :(</h1>
-    </div>
-  )
-}
+  return <NoDataTemplate />;
+};
 
-export default NotFoundPage
+export default NotFoundPage;

@@ -5,6 +5,8 @@ import { Container, PageWrapper, Typography } from '@ui/atoms';
 import { declFormatters } from '@shared/utils';
 
 const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   background-color: ${({ theme }) => theme.palette.background.default};
   padding: ${({ theme }) => theme.spacing(2)}px;
@@ -28,6 +30,17 @@ const NameText = styled(Typography)`
   background-color: ${({ theme }) => theme.palette.common.black};
   color: ${({ theme }) => theme.palette.common.white};
   word-break: break-word;
+`;
+const LinksWrapper = styled.div`
+  margin-top: auto;
+  padding-top: ${({ theme }) => theme.spacing(3)}px;
+`;
+const Link = styled.a`
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.common.white};
+  margin-bottom: ${({ theme }) => theme.spacing(1)}px;
 `;
 
 type Props = {
@@ -72,11 +85,23 @@ export const ArtistTemplate: React.FC<Props> = ({
             Жанр: {genre}
           </Typography>
           {biography && <Typography variant="body1">{biography}</Typography>}
-          <div>
-            {email && <a href={email}>{email}</a>}
-            {instagram && <a href={instagram}>{instagram}</a>}
-            {vk && <a href={vk}>{vk}</a>}
-          </div>
+          <LinksWrapper>
+            {email && (
+              <Link href={'mailto:' + email}>
+                <NameText variant="subtitle2">{email}</NameText>
+              </Link>
+            )}
+            {instagram && (
+              <Link href={instagram}>
+                <NameText variant="subtitle2">{instagram}</NameText>
+              </Link>
+            )}
+            {vk && (
+              <Link href={vk}>
+                <NameText variant="subtitle2">{vk}</NameText>
+              </Link>
+            )}
+          </LinksWrapper>
         </ContentWrapper>
       </Container>
     </PageWrapper>
