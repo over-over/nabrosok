@@ -5,9 +5,12 @@ import { Container, PageWrapper, Typography } from '@ui/atoms';
 import { ArtistCard } from '@ui/molecules';
 
 const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   background-color: ${({ theme }) => theme.palette.background.default};
   padding: ${({ theme }) => theme.spacing(2)}px;
+  padding-bottom: ${({ theme }) => theme.spacing(5)}px;
 `;
 const PhotoWrapper = styled.div`
   height: 420px;

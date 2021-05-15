@@ -11,6 +11,7 @@ const BackgroundText = styled(Typography)`
 `;
 const StyledContainer = styled(Container)`
   justify-content: center;
+  padding: 0 ${({ theme }) => theme.spacing(1)}px;
 `;
 
 type Props = {
@@ -21,7 +22,7 @@ export const NoDataTemplate: React.FC<Props> = ({ text }) => {
   return (
     <PageWrapper>
       <StyledContainer>
-        <BackgroundText variant="h1">Ничего не найдено :(</BackgroundText>
+        <BackgroundText variant="h3">Ничего не найдено :(</BackgroundText>
         {text && (
           <BackgroundText variant="body1" mt={3}>
             {text}

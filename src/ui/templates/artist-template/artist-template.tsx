@@ -10,6 +10,7 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
   background-color: ${({ theme }) => theme.palette.background.default};
   padding: ${({ theme }) => theme.spacing(2)}px;
+  padding-bottom: ${({ theme }) => theme.spacing(5)}px;
 `;
 const PhotoWrapper = styled.div`
   height: 480px;
