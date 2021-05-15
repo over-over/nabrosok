@@ -3,7 +3,7 @@ import React from 'react';
 import worksJSON from '@data/works.json';
 import artistsJSON from '@data/artists.json';
 import type { TArtistWork, TArtist } from '@data/types';
-import { WorkTemplate } from '@ui/templates';
+import { LoaderTemplate, NoDataTemplate, WorkTemplate } from '@ui/templates';
 
 type Props = {
   location: any;
@@ -16,8 +16,13 @@ export const WorkDetails: React.FC<Props> = ({ location }) => {
   const works: Record<string, TArtistWork> = worksJSON;
   const data = works?.[id];
 
+  // dumb
+  if (id < 2 || id > 200) {
+    return <NoDataTemplate text="Возможно данной работы нет" />;
+  }
+
   if (!id || !data) {
-    return <p>Ooops :(</p>;
+    return <LoaderTemplate />;
   }
   //@ts-ignore
   const artist: TArtist | undefined = artistsJSON[data.artistId];

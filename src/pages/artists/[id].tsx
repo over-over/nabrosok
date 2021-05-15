@@ -2,7 +2,7 @@ import React from 'react';
 
 import artistsJSON from '@data/artists.json';
 import type { TArtist } from '@data/types';
-import { ArtistTemplate } from '@ui/templates';
+import { LoaderTemplate, NoDataTemplate, ArtistTemplate } from '@ui/templates';
 
 type Props = {
   location: any;
@@ -15,9 +15,15 @@ export const ArtistDetails: React.FC<Props> = ({ location }) => {
   const works: Record<string, TArtist> = artistsJSON;
   const data = works?.[id];
 
-  if (!id || !data) {
-    return <p>Ooops :(</p>;
+  // dumb
+  if (id < 2 || id > 60) {
+    return <NoDataTemplate text="Возможно нет данных об авторе" />;
   }
+
+  if (!id || !data) {
+    return <LoaderTemplate />;
+  }
+
   return (
     <ArtistTemplate
       name={data.name}
