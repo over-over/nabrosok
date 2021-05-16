@@ -1,2 +1,0 @@
-(self.webpackChunknabrosok_2021=self.webpackChunknabrosok_2021||[]).push([[691],{6814:function(e,n,t){"use strict";function r(e){if(null==e)throw new TypeError("Cannot destructure undefined")}t.d(n,{Z:function(){return r}})},6738:function(e,n,t){"use strict";t.r(n);var r=t(6814),u=t(7294),o=t(5444);n.default=function(e){return(0,r.Z)(e),u.createElement("div",null,"Hello world!",u.createElement(o.rU,{to:"home"},"Перейти на главную"))}}}]);
-//# sourceMappingURL=component---src-pages-index-tsx-efb28f28ae6054115a5d.js.map
