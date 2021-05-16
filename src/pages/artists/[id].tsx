@@ -33,6 +33,7 @@ export const ArtistDetails: React.FC<Props> = ({ location }) => {
       email={data.email}
       vk={data.vk}
       instagram={data.instagram}
+      youtube={data.youtube}
     />
   );
 };

@@ -5,8 +5,9 @@ export type TArtist = {
   genre?: string;
   biography?: string;
   email?: string;
-  instagram?: string;
+  instagram?: string[];
   vk?: string;
+  youtube?: string;
 };
 
 export type TMedia = {

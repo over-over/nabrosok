@@ -44,6 +44,20 @@ const Link = styled.a`
   margin-bottom: ${({ theme }) => theme.spacing(1)}px;
 `;
 
+const getYoutubeIframe = (id: string) => (
+  <iframe
+    width="100%"
+    height="360"
+    style={{ marginBottom: 32 }}
+    src={`https://www.youtube.com/embed/${id}`}
+    title="YouTube video player"
+    //@ts-ignore
+    frameborder="0"
+    allowFullScreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  />
+);
+
 type Props = {
   name: string;
   age?: number;
@@ -51,7 +65,8 @@ type Props = {
   biography?: string;
   email?: string;
   vk?: string;
-  instagram?: string;
+  instagram?: string[];
+  youtube?: string;
 };
 
 export const ArtistTemplate: React.FC<Props> = ({
@@ -62,7 +77,9 @@ export const ArtistTemplate: React.FC<Props> = ({
   email,
   vk,
   instagram,
+  youtube,
 }) => {
+  const video = youtube ? getYoutubeIframe(youtube) : null;
   return (
     <PageWrapper>
       <Container>
@@ -74,6 +91,7 @@ export const ArtistTemplate: React.FC<Props> = ({
               alt={name}
             />
           </PhotoWrapper> */}
+          {video}
           <NameText variant="h3" mb={2}>
             {name}
           </NameText>
@@ -98,11 +116,11 @@ export const ArtistTemplate: React.FC<Props> = ({
                   <NameText variant="subtitle2">{email}</NameText>
                 </Link>
               )}
-              {instagram && (
-                <Link href={instagram}>
-                  <NameText variant="subtitle2">{instagram}</NameText>
+              {instagram?.map(item => (
+                <Link href={item}>
+                  <NameText variant="subtitle2">{item}</NameText>
                 </Link>
-              )}
+              ))}
               {vk && (
                 <Link href={vk}>
                   <NameText variant="subtitle2">{vk}</NameText>

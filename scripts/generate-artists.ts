@@ -16,6 +16,7 @@ type TGSArtistsResponse = {
     link: (string | 0)[];
     media: (string | 0)[];
     biogrpahy: (string | 0)[];
+    videourl: (string | 0)[];
   };
   rows: {
     artistid: number;
@@ -28,6 +29,7 @@ type TGSArtistsResponse = {
     link: string | 0;
     media: string | 0;
     biography: string | 0;
+    videourl: string | 0;
   }[];
 };
 
@@ -38,20 +40,24 @@ type TArtist = {
   genre?: string;
   biography?: string;
   email?: string;
-  instagram?: string;
+  instagram?: string[];
   vk?: string;
+  youtube?: string;
 };
 
 type TArtistData = Record<number, TArtist>;
+
+const mapInst = (profiles: string) => {
+  const ids = profiles.split(`\n`);
+  const result = ids.map(item => 'https://www.instagram.com/' + item.slice(1));
+  return result;
+};
 
 const requestArtistData = async () => {
   try {
     const sheetJSON: TGSArtistsResponse = await (await artistFetch(GSArtistLink)).json();
     const mappedData: TArtistData = sheetJSON.rows.reduce((acc, item) => {
-      const instagram =
-        item.instagram === 0
-          ? undefined
-          : 'https://www.instagram.com/' + item.instagram.slice(1);
+      const instagram = item.instagram === 0 ? undefined : mapInst(item.instagram);
       const result: TArtist = {
         id: item.artistid,
         name: item.name,
@@ -60,6 +66,7 @@ const requestArtistData = async () => {
         age: item.age === 0 ? undefined : item.age,
         email: item.email === 0 ? undefined : item.email,
         vk: item.vk === 0 ? undefined : item.vk,
+        youtube: item.videourl === 0 ? undefined : item.videourl.split('/')?.[3],
         instagram,
       };
       return { ...acc, [item.artistid]: result };

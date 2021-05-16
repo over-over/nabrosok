@@ -10,7 +10,8 @@ export const artistsData: TArtist[] = [
       'Андрей с давних времён увлекается фотографией, ещё будучи ребёнком его интересовала работа с плёночными аппаратми и проявление фотографий. Что-то ешё',
     email: 'art@art.com',
     vk: 'https://vk.com/id1',
-    instagram: '@awesome_art',
+    instagram: ['@awesome_art'],
+    youtube: 'dD0--O-NBUQ',
   },
 ];
 
