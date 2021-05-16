@@ -43,6 +43,9 @@ const Link = styled.a`
   color: ${({ theme }) => theme.palette.common.white};
   margin-bottom: ${({ theme }) => theme.spacing(1)}px;
 `;
+const DescriptionText = styled(Typography)`
+  white-space: pre-wrap;
+`;
 
 const getYoutubeIframe = (id: string) => (
   <iframe
@@ -105,7 +108,7 @@ export const ArtistTemplate: React.FC<Props> = ({
               Жанр: {genre}
             </Typography>
           )}
-          {biography && <Typography variant="body1">{biography}</Typography>}
+          {biography && <DescriptionText variant="body1">{biography}</DescriptionText>}
           {email || instagram || vk ? (
             <LinksWrapper>
               <Typography variant="h5" mb={2}>
